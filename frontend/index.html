@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoo HRMS - Login</title>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <div id="alerts-container" class="alerts-container"></div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="logo-brand"><i class="fa-solid fa-cubes-stacked"></i>odoo<span>hrms</span></div>
+                <p class="auth-subtitle">Every workday, perfectly aligned.</p>
+            </div>
+            <form id="signin-form">
+                <div class="form-group">
+                    <label class="form-label" for="signin-email">Email Address</label>
+                    <input type="email" id="signin-email" class="form-input" placeholder="name@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="signin-password">Password</label>
+                    <input type="password" id="signin-password" class="form-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" id="btn-signin" class="btn">Sign In <i class="fa-solid fa-arrow-right-to-bracket"></i></button>
+            </form>
+            <div class="auth-footer">
+                Don't have an account? <a href="register.html" class="auth-link">Register here</a>
+            </div>
+            <div style="margin-top: 20px; text-align: center; font-size: 0.8rem; color: var(--text-muted);">
+                <p><strong>Demo Employee:</strong> employee@company.com / Employee@123</p>
+                <p><strong>Demo Admin:</strong> admin@company.com / Admin@123</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

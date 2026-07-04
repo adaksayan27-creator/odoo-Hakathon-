@@ -1,0 +1,57 @@
+.payslip-wrapper {
+    background: var(--bg-card);
+    border: 2px dashed var(--border-color);
+    padding: 30px;
+    border-radius: var(--border-radius-md);
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.payslip-header {
+    text-align: center;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.payslip-body {
+    margin-bottom: 20px;
+}
+
+.payslip-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.payslip-total {
+    border-top: 2px solid var(--text-main);
+    border-bottom: 2px solid var(--text-main);
+    font-weight: 800;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    margin-top: 12px;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .payslip-wrapper, .payslip-wrapper * {
+        visibility: visible;
+    }
+    .payslip-wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border: none;
+        padding: 0;
+    }
+    #btn-print-payslip {
+        display: none;
+    }
+}

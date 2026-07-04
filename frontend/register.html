@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoo HRMS - Register</title>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <div id="alerts-container" class="alerts-container"></div>
+
+    <!-- MOCK EMAIL OTP VERIFICATION MODAL -->
+    <div id="verification-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="stat-icon primary" style="margin: 0 auto 16px;">
+                <i class="fa-solid fa-envelope-circle-check"></i>
+            </div>
+            <h2>Verify Your Email</h2>
+            <p class="auth-subtitle" style="margin-bottom: 20px;">We've sent a mock verification code to your email. Enter it below to complete signup.</p>
+            <div class="form-group">
+                <input type="text" id="verification-code-input" class="form-input" placeholder="6-digit Code" style="text-align: center; font-size: 1.2rem; letter-spacing: 4px;">
+            </div>
+            <button id="btn-submit-verification" class="btn btn-accent">Verify & Complete</button>
+            <p class="auth-footer" style="margin-top: 15px; margin-bottom: 0;">
+                Didn't get it? <a href="#" id="resend-verification-link" class="auth-link">Resend Code</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- REGISTER CARD -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="logo-brand"><i class="fa-solid fa-cubes-stacked"></i>odoo<span>hrms</span></div>
+                <p class="auth-subtitle">Create a new employee profile</p>
+            </div>
+            <form id="signup-form">
+                <div class="form-group">
+                    <label class="form-label" for="signup-empid">Employee ID</label>
+                    <input type="text" id="signup-empid" class="form-input" placeholder="EMP-1004" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="signup-email">Email Address</label>
+                    <input type="email" id="signup-email" class="form-input" placeholder="name@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="signup-password">Password</label>
+                    <input type="password" id="signup-password" class="form-input" placeholder="Min. 8 chars, 1 uppercase, 1 digit" required>
+                    <div class="pwd-strength">
+                        <div id="pwd-strength-bar" class="pwd-strength-bar"></div>
+                    </div>
+                    <span id="pwd-strength-text" class="pwd-strength-text">Password Strength</span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="signup-role">Role</label>
+                    <select id="signup-role" class="form-input">
+                        <option value="Employee">Employee</option>
+                        <option value="Admin">HR Officer / Admin</option>
+                    </select>
+                </div>
+                <button type="submit" id="btn-signup" class="btn btn-accent">Register Profile <i class="fa-solid fa-user-plus"></i></button>
+            </form>
+            <div class="auth-footer">
+                Already registered? <a href="index.html" class="auth-link">Sign In here</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

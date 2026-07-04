@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoo HRMS - Payroll & Salary Slips</title>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/payroll.css">
+</head>
+<body>
+
+    <div class="app-layout">
+        <!-- Sidebar injected via js/api.js -->
+        <aside id="app-sidebar"></aside>
+
+        <div class="app-content">
+            <!-- Header injected via js/api.js -->
+            <header id="app-navbar"></header>
+
+            <main class="view-container">
+                <!-- Admin control panel (Visible to Admin role only) -->
+                <div id="admin-payroll-controls" class="dashboard-card d-none" style="margin-bottom: 30px;">
+                    <h3>Manage Employee Salary Structure</h3>
+                    <p class="auth-subtitle" style="margin-bottom: 20px;">Configure basic pay structure, HRA, and tax adjustments.</p>
+                    <form id="admin-payroll-structure-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label" for="payroll-basic-salary">Basic Salary ($)</label>
+                                <input type="number" id="payroll-basic-salary" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="payroll-hra">House Rent Allowance (HRA) ($)</label>
+                                <input type="number" id="payroll-hra" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="payroll-bonus">Performance Bonus ($)</label>
+                                <input type="number" id="payroll-bonus" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="payroll-deductions">Deductions (Taxes) ($)</label>
+                                <input type="number" id="payroll-deductions" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-accent" style="width: auto; padding: 12px 24px;">Update Salary Structure</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Payslip Render Container -->
+                <div class="dashboard-card">
+                    <h3>Payslip Invoice Statement</h3>
+                    <p class="auth-subtitle">Verified payslip breakdown details.</p>
+                    <div class="payslip-wrapper">
+                        <div class="payslip-header">
+                            <h2 style="color: var(--primary-color);">odoo<span>hrms</span> Payslip</h2>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Official Statement of Earnings</p>
+                        </div>
+                        <div class="payslip-body">
+                            <div class="payslip-row">
+                                <span class="details-label">Employee Name:</span>
+                                <span id="payslip-emp-name" class="details-value">--</span>
+                            </div>
+                            <div class="payslip-row">
+                                <span class="details-label">Employee ID:</span>
+                                <span id="payslip-emp-id" class="details-value">--</span>
+                            </div>
+                            <div class="payslip-row">
+                                <span class="details-label">Job Title:</span>
+                                <span id="payslip-emp-title" class="details-value">--</span>
+                            </div>
+                            <div class="payslip-row" style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+                                <span class="details-label">Basic Salary:</span>
+                                <span id="payslip-basic-val" class="details-value">$0.00</span>
+                            </div>
+                            <div class="payslip-row">
+                                <span class="details-label">HRA:</span>
+                                <span id="payslip-hra-val" class="details-value">$0.00</span>
+                            </div>
+                            <div class="payslip-row">
+                                <span class="details-label">Allowances & Bonuses:</span>
+                                <span id="payslip-bonus-val" class="details-value">$0.00</span>
+                            </div>
+                            <div class="payslip-row" style="color: var(--color-danger);">
+                                <span class="details-label">Deductions (Taxes):</span>
+                                <span id="payslip-deduct-val" class="details-value">-$0.00</span>
+                            </div>
+                            <div class="payslip-row payslip-total">
+                                <span>Net Salary:</span>
+                                <span id="payslip-net-val">$0.00</span>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button id="btn-print-payslip" class="btn" style="width: auto; display: inline-flex; padding: 10px 20px;"><i class="fa-solid fa-print"></i> Print Payslip</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/payroll.js"></script>
+</body>
+</html>

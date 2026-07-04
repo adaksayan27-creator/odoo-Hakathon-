@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoo HRMS - Attendance Calendar</title>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/attendance.css">
+</head>
+<body>
+
+    <div class="app-layout">
+        <!-- Sidebar injected via js/api.js -->
+        <aside id="app-sidebar"></aside>
+
+        <div class="app-content">
+            <!-- Header injected via js/api.js -->
+            <header id="app-navbar"></header>
+
+            <main class="view-container">
+                <div class="grid-cols-3">
+                    <!-- Clock Log Card -->
+                    <div class="dashboard-card" style="height: fit-content;">
+                        <h3>Today's Check-In Log</h3>
+                        <div class="attendance-widget" style="margin-top: 15px;">
+                            <div id="attendance-section-timer" class="timer-display">00:00:00</div>
+                            <span id="attendance-section-status" class="attendance-status-badge status-badge-absent">Not Checked In</span>
+                            <button id="btn-attendance-section-toggle" class="btn btn-accent" style="margin-bottom: 20px;">Check In</button>
+                        </div>
+                        <div class="details-list">
+                            <div class="details-row">
+                                <span class="details-label">Punch In Time</span>
+                                <span id="attendance-punch-in-label" class="details-value">--:--</span>
+                            </div>
+                            <div class="details-row">
+                                <span class="details-label">Punch Out Time</span>
+                                <span id="attendance-punch-out-label" class="details-value">--:--</span>
+                            </div>
+                            <div class="details-row">
+                                <span class="details-label">Status</span>
+                                <span id="attendance-status-label" class="details-value">Absent</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Month Calendar Log view -->
+                    <div class="dashboard-card" style="grid-column: span 2;">
+                        <div class="calendar-header">
+                            <h3 id="attendance-calendar-title">July 2026</h3>
+                            <div style="display: flex; gap: 15px; align-items: center;">
+                                <div class="btn-group" id="attendance-view-toggle" style="display: flex; border: 1px solid var(--border-color); border-radius: var(--border-radius-sm); overflow: hidden;">
+                                    <button class="btn btn-secondary active" data-view="month" style="padding: 6px 12px; font-size: 0.8rem; border: none; border-radius: 0; background: var(--primary-color); color: #ffffff;">Month</button>
+                                    <button class="btn btn-secondary" data-view="week" style="padding: 6px 12px; font-size: 0.8rem; border: none; border-radius: 0; background: transparent; color: var(--text-muted);">Week</button>
+                                    <button class="btn btn-secondary" data-view="day" style="padding: 6px 12px; font-size: 0.8rem; border: none; border-radius: 0; background: transparent; color: var(--text-muted);">Day</button>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <button id="btn-prev-month" class="calendar-nav-btn" title="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+                                    <button id="btn-next-month" class="calendar-nav-btn" title="Next"><i class="fa-solid fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="calendar-weekdays">
+                            <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                        </div>
+                        <div id="attendance-calendar-grid" class="calendar-grid">
+                            <!-- Populated by JS -->
+                        </div>
+                        
+                        <!-- Markers legend -->
+                        <div style="display: flex; gap: 15px; margin-top: 20px; font-size: 0.8rem; justify-content: center; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <div class="calendar-day-marker marker-present" style="margin: 0;"></div> Present
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <div class="calendar-day-marker marker-absent" style="margin: 0;"></div> Absent
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <div class="calendar-day-marker marker-halfday" style="margin: 0;"></div> Half-Day
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <div class="calendar-day-marker marker-leave" style="margin: 0;"></div> Leave / Time-Off
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History list log -->
+                <div class="dashboard-card" style="margin-top: 24px;">
+                    <h3>Attendance Log History</h3>
+                    <div class="table-container">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Punch In</th>
+                                    <th>Punch Out</th>
+                                    <th>Total Hours</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendance-history-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/attendance.js"></script>
+</body>
+</html>
