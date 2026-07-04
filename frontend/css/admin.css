@@ -1,0 +1,28 @@
+.table-user-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.table-user-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.admin-leaves-sidebar-list {
+    margin-top: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.admin-pending-leave-card {
+    background: var(--bg-app);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}

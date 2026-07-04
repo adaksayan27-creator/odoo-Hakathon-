@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoo HRMS - Leave Requests</title>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/attendance.css">
+    <link rel="stylesheet" href="css/leave.css">
+</head>
+<body>
+
+    <div class="app-layout">
+        <!-- Sidebar injected via js/api.js -->
+        <aside id="app-sidebar"></aside>
+
+        <div class="app-content">
+            <!-- Header injected via js/api.js -->
+            <header id="app-navbar"></header>
+
+            <main class="view-container">
+                <div class="grid-cols-3">
+                    <!-- Application Form -->
+                    <div class="dashboard-card" style="height: fit-content;">
+                        <h3>Apply for Leave</h3>
+                        <form id="leave-request-form" class="leave-request-form">
+                            <div class="form-group">
+                                <label class="form-label" for="leave-type">Leave Type</label>
+                                <select id="leave-type" class="form-input">
+                                    <option value="Paid">Paid Leave</option>
+                                    <option value="Sick">Sick Leave</option>
+                                    <option value="Unpaid">Unpaid Leave</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="leave-start-date">Start Date</label>
+                                <input type="date" id="leave-start-date" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="leave-end-date">End Date</label>
+                                <input type="date" id="leave-end-date" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="leave-remarks">Remarks / Reason</label>
+                                <textarea id="leave-remarks" class="form-input" rows="3" placeholder="State reason..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-accent">Submit Request</button>
+                        </form>
+                    </div>
+
+                    <!-- Leaves Planning Calendar -->
+                    <div class="dashboard-card" style="grid-column: span 2;">
+                        <div class="calendar-header">
+                            <h3 id="leaves-calendar-title">July 2026</h3>
+                            <div style="display: flex; gap: 8px;">
+                                <button id="btn-leaves-prev-month" class="calendar-nav-btn" type="button"><i class="fa-solid fa-chevron-left"></i></button>
+                                <button id="btn-leaves-next-month" class="calendar-nav-btn" type="button"><i class="fa-solid fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="calendar-weekdays">
+                            <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                        </div>
+                        <div id="leaves-calendar-grid" class="calendar-grid">
+                            <!-- Populated dynamically -->
+                        </div>
+                        <p class="auth-subtitle" style="margin-top: 15px; font-size: 0.8rem; text-align: center;">
+                            <i class="fa-solid fa-info-circle"></i> Click a start date and end date on the calendar to select your leave range.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Admin approvals lists (shown only if Admin role logged in) -->
+                <div id="admin-leave-approvals-panel" class="dashboard-card d-none" style="margin-top: 30px;">
+                    <h3>Company Leave Approvals Board</h3>
+                    <div class="table-container">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Employee</th>
+                                    <th>Type</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Remarks</th>
+                                    <th>Status</th>
+                                    <th>Review Comment</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-leave-approvals-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/leave.js"></script>
+</body>
+</html>

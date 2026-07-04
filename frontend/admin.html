@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odoo HRMS - HR Registry Control Board</title>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <!-- Load dashboard.css to reuse cards stats grids -->
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <div class="app-layout">
+        <!-- Sidebar injected via js/api.js -->
+        <aside id="app-sidebar"></aside>
+
+        <div class="app-content">
+            <!-- Header injected via js/api.js -->
+            <header id="app-navbar"></header>
+
+            <main class="view-container">
+                <!-- Summary Stats -->
+                <div class="grid-cols-4">
+                    <div class="dashboard-card">
+                        <div class="stat-icon primary"><i class="fa-solid fa-users"></i></div>
+                        <div class="stat-title">Total Employees</div>
+                        <div id="admin-dash-total-emp" class="stat-value">0</div>
+                        <div class="stat-trend trend-up"><i class="fa-solid fa-user-plus"></i> Active Registry headcount</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="stat-icon success"><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="stat-title">Present Today</div>
+                        <div id="admin-dash-present" class="stat-value">0</div>
+                        <div id="admin-dash-present-rate" class="stat-trend trend-up"><i class="fa-solid fa-chart-line"></i> 0% presence rate</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="stat-icon warning"><i class="fa-solid fa-hourglass-half"></i></div>
+                        <div class="stat-title">Pending Leave Requests</div>
+                        <div id="admin-dash-pending-leaves" class="stat-value">0</div>
+                        <div class="stat-trend"><i class="fa-solid fa-circle-info"></i> Requires review</div>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="stat-icon danger"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="stat-title">Absent Today</div>
+                        <div id="admin-dash-absent" class="stat-value">0</div>
+                        <div class="stat-trend trend-down"><i class="fa-solid fa-circle-exclamation"></i> Offline show logs</div>
+                    </div>
+                </div>
+
+                <!-- Main registry details row -->
+                <div class="grid-cols-3">
+                    <!-- Left: Employee registry table -->
+                    <div class="dashboard-card" style="grid-column: span 2;">
+                        <h3>Employee Registry</h3>
+                        <div class="table-container">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Employee</th>
+                                        <th>Emp ID</th>
+                                        <th>Designation</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-employee-table-body">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Right: Pending leaves approvals list -->
+                    <div class="dashboard-card">
+                        <h3>Pending Leave Requests</h3>
+                        <div id="admin-leaves-sidebar-list" class="admin-leaves-sidebar-list">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

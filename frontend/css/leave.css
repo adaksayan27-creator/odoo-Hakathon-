@@ -1,0 +1,32 @@
+.leave-request-form {
+    margin-top: 15px;
+}
+
+.action-buttons-wrap {
+    display: flex;
+    gap: 8px;
+}
+
+.action-icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--border-radius-sm);
+    background: var(--bg-app);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.action-icon-btn:hover {
+    background: var(--primary-color);
+    color: #ffffff;
+}
+
+.action-icon-btn.btn-approve:hover {
+    background: var(--color-success);
+}
+.action-icon-btn.btn-reject:hover {
+    background: var(--color-danger);
+}
