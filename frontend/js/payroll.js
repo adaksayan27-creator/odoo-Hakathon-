@@ -53,7 +53,34 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             saveDB('payroll');
 
-            showToast(`Salary structure updated for ${targetUser.name}!`, 'success');
+            // Send payroll update email to the employee
+            fetch('/api/email/payroll-update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    employeeEmail: targetUser.email,
+                    payroll: DB.payroll[targetUser.email]
+                })
+            }).then(res => res.json()).then(data => {
+                if (data.success) {
+                    let msg = `Salary updated & email sent to ${targetUser.name}!`;
+                    if (data.previewUrl) {
+                        const preview = document.createElement('a');
+                        preview.href = data.previewUrl;
+                        preview.target = '_blank';
+                        preview.style.cssText = 'color:var(--accent-color); text-decoration:underline; margin-left:6px;';
+                        preview.textContent = 'Preview email →';
+                        setTimeout(() => {
+                            const toastEl = document.querySelector('.alert-toast.success');
+                            if (toastEl) toastEl.querySelector('span').appendChild(preview);
+                        }, 100);
+                    }
+                    showToast(msg, 'success');
+                }
+            }).catch(() => {
+                showToast(`Salary structure updated for ${targetUser.name}!`, 'success');
+            });
+
             renderPayroll();
         });
     }

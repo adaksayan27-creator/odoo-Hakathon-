@@ -10,6 +10,8 @@ try {
     if (xhr.status === 200) {
         const data = JSON.parse(xhr.responseText);
         Object.assign(DB, data);
+        // Clear stale localStorage user cache so ghost test-registered accounts never re-appear
+        localStorage.removeItem('hrms_users');
         console.log('Successfully connected to HRMS backend server.');
     } else {
         throw new Error('Server returned status ' + xhr.status);
@@ -367,7 +369,9 @@ function initLayout(activePageName) {
         if (isAdmin) {
             const selectEl = document.getElementById('admin-employee-switcher');
             selectEl.innerHTML = '';
-            Object.values(DB.users).forEach(u => {
+            // Only show non-Admin employees from the server DB (filters out ghost/test accounts)
+            const validEmployees = Object.values(DB.users).filter(u => u.role !== 'Admin');
+            validEmployees.forEach(u => {
                 const opt = document.createElement('option');
                 opt.value = u.email;
                 opt.textContent = `${u.name} (${u.employeeId})`;
